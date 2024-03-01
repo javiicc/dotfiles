@@ -1,0 +1,7 @@
+[user]
+	name = Javier
+	email = 82763996+javiicc@users.noreply.github.com
+[init]
+	defaultBranch = main
+[diff]
+	submodule = log
