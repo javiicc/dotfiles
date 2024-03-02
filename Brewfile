@@ -1,5 +1,7 @@
 tap "homebrew/bundle"
 tap "homebrew/core"
+# Modern, maintained replacement for ls
+brew "eza"
 # UNIX shell (command interpreter)
 brew "zsh"
 # Fish-like fast/unobtrusive autosuggestions for zsh

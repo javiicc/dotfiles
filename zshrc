@@ -39,6 +39,8 @@ function mkcd() {
 # -------------------------------------------------
 # -------------------- ALIASES --------------------
 # -------------------------------------------------
+alias ls='eza -lahF --git'
+alias eza='eza -lahF --git'
 alias bbd='brew bundle dump --force --describe'
 alias trail='<<<${(F)path}'
 
