@@ -6,6 +6,8 @@
 
 - link:
     ~/.zshrc:
+    ~/.zshenv:
+    ~/.gitconfig:
 
 - create:
     - ~/work
