@@ -49,3 +49,5 @@ function mkcd() {
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 # enable zsh-autosuggestions by sourcing the zsh-autosuggestions.zsh script
 source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+# enable zsh-syntax-highlighting by sourcing the zsh-syntax-highlighting.zsh script
+source $HOMEBREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
