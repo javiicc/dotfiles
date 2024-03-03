@@ -76,7 +76,8 @@ prompt_end() {
 
 prompt_head() {
   echo "\r               "  # Clear prevous line
-  echo "\r %{%F{32}%}[%64<..<%~%<<]"  # Print Dir.
+  # echo "\r %{%F{32}%}[%64<..<%~%<<]"  # Print Dir.
+  echo "\r %{%F{238}%}[%64<..<%~%<<]"  # Print Dir.
 }
 
 # Context: user@hostname (who am I and where am I)
