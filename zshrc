@@ -13,6 +13,7 @@ HISTFILE=~/.zsh_history
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=238"
 
 
+
 # -------------------------------------------------
 # ---------------- HANDY FUNCTIONS ----------------
 # -------------------------------------------------
@@ -34,22 +35,15 @@ alias trail='<<<${(F)path}'
 # -------------------------------------------------
 # -------------- CUSTOMIZE PROMPT(s) --------------
 # -------------------------------------------------
+### Prompt components
+# Each component will draw itself, and hide itself if no information needs to be shown
+
 CURRENT_BG='NONE'
 
 # Special Powerline characters
 
 () {
   local LC_ALL="" LC_CTYPE="en_US.UTF-8"
-  # NOTE: This segment separator character is correct.  In 2012, Powerline changed
-  # the code points they use for their special characters. This is the new code point.
-  # If this is not working for you, you probably have an old version of the
-  # Powerline-patched fonts installed. Download and install the new version.
-  # Do not submit PRs to change this unless you have reviewed the Powerline code point
-  # history and have new information.
-  # This is defined using a Unicode escape sequence so it is unambiguously readable, regardless of
-  # what font the user is viewing this source code in. Do not replace the
-  # escape sequence with a single literal character.
-  # Do not change this! Do not make it '\u2b80'; that is the old, wrong code point.
   SEGMENT_SEPARATOR=$'\ue0b0'
 }
 
@@ -87,16 +81,66 @@ prompt_dir() {
 
 prompt_head() {
   echo "\r               "  # Clear prevous line
-  echo "\r %{%F{6}%}[%64<..<%~%<<]"  # Print Dir.
+  echo "\r %{%F{32}%}[%64<..<%~%<<]"  # Print Dir.
 }
 
-### Prompt components
-# Each component will draw itself, and hide itself if no information needs to be shown
 
 # Context: user@hostname (who am I and where am I)
 prompt_context() {
-  prompt_segment 000 088 "%(!.%{%F{yellow}%}.)%n"
+  # prompt_segment 000 088 "%(!.%{%F{yellow}%}.)%n"
+  prompt_segment 233 088 "%(!.%{%F{yellow}%}.)%n"
 }
+
+# Virtualenv: current working virtualenv
+prompt_virtualenv() {
+  if [[ -n "$VIRTUAL_ENV" ]]; then
+    prompt_segment 052 195 "(${VIRTUAL_ENV:t:gs/%/%%})"
+  fi
+}
+#007
+# Git: branch/detached head, dirty status
+prompt_git() {
+  (( $+commands[git] )) || return
+  local PL_BRANCH_CHAR
+  () {
+    local LC_ALL="" LC_CTYPE="en_US.UTF-8"
+    PL_BRANCH_CHAR=$'\ue0a0'         # 
+  }
+  local ref dirty mode repo_path
+  repo_path=$(git rev-parse --git-dir 2> /dev/null)
+
+  if $(git rev-parse --is-inside-work-tree >/dev/null 2>&1); then
+    dirty=$(parse_git_dirty)
+    ref=$(git symbolic-ref HEAD 2> /dev/null) || ref="➦ $(git rev-parse --short HEAD 2> /dev/null)"
+    if [[ -n $dirty ]]; then
+      prompt_segment yellow black
+    else
+      prompt_segment 236 189
+    fi
+
+    if [[ -e "${repo_path}/BISECT_LOG" ]]; then
+      mode=" <B>"
+    elif [[ -e "${repo_path}/MERGE_HEAD" ]]; then
+      mode=" >M<"
+    elif [[ -e "${repo_path}/rebase" || -e "${repo_path}/rebase-apply" || -e "${repo_path}/rebase-merge" || -e "${repo_path}/../.dotest" ]]; then
+      mode=" >R>"
+    fi
+
+    setopt promptsubst
+    autoload -Uz vcs_info
+
+    zstyle ':vcs_info:*' enable git
+    zstyle ':vcs_info:*' get-revision true
+    zstyle ':vcs_info:*' check-for-changes true
+    zstyle ':vcs_info:*' stagedstr '+'
+    zstyle ':vcs_info:*' unstagedstr '-'
+    zstyle ':vcs_info:*' formats ' %u%c'
+    zstyle ':vcs_info:*' actionformats ' %u%c'
+    vcs_info
+    echo -n "${ref/refs\/heads\//$PL_BRANCH_CHAR }${vcs_info_msg_0_%% }${mode}"
+  fi
+}
+
 
 # # Load colors so we can access $fg and more.
 # autoload -U colors && colors
@@ -120,10 +164,10 @@ build_prompt() {
   RETVAL=$?
   prompt_head
   # prompt_status
-  # prompt_virtualenv
+  prompt_virtualenv
   prompt_context
   # prompt_dir
-  # prompt_git
+  prompt_git
   # prompt_bzr
   # prompt_hg
   prompt_end
