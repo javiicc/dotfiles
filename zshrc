@@ -74,16 +74,10 @@ prompt_end() {
   CURRENT_BG=''
 }
 
-# Dir: current working directory
-prompt_dir() {
-  prompt_segment 006 000 $(basename `pwd`)
-}
-
 prompt_head() {
   echo "\r               "  # Clear prevous line
   echo "\r %{%F{32}%}[%64<..<%~%<<]"  # Print Dir.
 }
-
 
 # Context: user@hostname (who am I and where am I)
 prompt_context() {
@@ -97,7 +91,7 @@ prompt_virtualenv() {
     prompt_segment 052 195 "(${VIRTUAL_ENV:t:gs/%/%%})"
   fi
 }
-#007
+
 # Git: branch/detached head, dirty status
 prompt_git() {
   (( $+commands[git] )) || return
@@ -141,35 +135,67 @@ prompt_git() {
   fi
 }
 
+# Status:
+# - was there an error
+# - am I root
+# - are there background jobs?
+prompt_status() {
+  local symbols
+  symbols=()
+  [[ $RETVAL -ne 0 ]] && symbols+="%{%F{red}%}✘"
+  [[ $UID -eq 0 ]] && symbols+="%{%F{yellow}%}⚡"
+  [[ $(jobs -l | wc -l) -gt 0 ]] && symbols+="%{%F{cyan}%}⚙"
 
-# # Load colors so we can access $fg and more.
-# autoload -U colors && colors
+  [[ -n "$symbols" ]] && prompt_segment 233 default "$symbols"
+}
 
-# # Prompt. Using single quotes around the PROMPT is very important, otherwise
-# # the git branch will always be empty. Using single quotes delays the
-# # evaluation of the prompt. Also PROMPT is an alias to PS1.
-# git_prompt() {
-#     local branch="$(git symbolic-ref HEAD 2> /dev/null | cut -d'/' -f3-)"
-#     local branch_truncated="${branch:0:30}"
-#     if (( ${#branch} > ${#branch_truncated} )); then
-#         branch="${branch_truncated}..."
-#     fi
-
-#     [ -n "${branch}" ] && echo " (${branch})"
-# }
+prompt_hg() {
+  (( $+commands[hg] )) || return
+  local rev status
+  if $(hg id >/dev/null 2>&1); then
+    if $(hg prompt >/dev/null 2>&1); then
+      if [[ $(hg prompt "{status|unknown}") = "?" ]]; then
+        # if files are not added
+        prompt_segment red white
+        st='±'
+      elif [[ -n $(hg prompt "{status|modified}") ]]; then
+        # if any modification
+        prompt_segment yellow black
+        st='±'
+      else
+        # if working copy is clean
+        prompt_segment green black
+      fi
+      echo -n $(hg prompt "☿ {rev}@{branch}") $st
+    else
+      st=""
+      rev=$(hg id -n 2>/dev/null | sed 's/[^-0-9]//g')
+      branch=$(hg id -b 2>/dev/null)
+      if `hg st | grep -q "^\?"`; then
+        prompt_segment red black
+        st='±'
+      elif `hg st | grep -q "^[MA]"`; then
+        prompt_segment yellow black
+        st='±'
+      else
+        prompt_segment green black
+      fi
+      echo -n "☿ $rev@$branch" $st
+    fi
+  fi
+}
 
 
 ## Main prompt
 build_prompt() {
   RETVAL=$?
   prompt_head
-  # prompt_status
+  prompt_status
   prompt_virtualenv
   prompt_context
-  # prompt_dir
   prompt_git
-  # prompt_bzr
-  # prompt_hg
+  prompt_bzr
+  prompt_hg
   prompt_end
 }
 
