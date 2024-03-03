@@ -149,42 +149,6 @@ prompt_status() {
   [[ -n "$symbols" ]] && prompt_segment 233 default "$symbols"
 }
 
-prompt_hg() {
-  (( $+commands[hg] )) || return
-  local rev status
-  if $(hg id >/dev/null 2>&1); then
-    if $(hg prompt >/dev/null 2>&1); then
-      if [[ $(hg prompt "{status|unknown}") = "?" ]]; then
-        # if files are not added
-        prompt_segment red white
-        st='±'
-      elif [[ -n $(hg prompt "{status|modified}") ]]; then
-        # if any modification
-        prompt_segment yellow black
-        st='±'
-      else
-        # if working copy is clean
-        prompt_segment green black
-      fi
-      echo -n $(hg prompt "☿ {rev}@{branch}") $st
-    else
-      st=""
-      rev=$(hg id -n 2>/dev/null | sed 's/[^-0-9]//g')
-      branch=$(hg id -b 2>/dev/null)
-      if `hg st | grep -q "^\?"`; then
-        prompt_segment red black
-        st='±'
-      elif `hg st | grep -q "^[MA]"`; then
-        prompt_segment yellow black
-        st='±'
-      else
-        prompt_segment green black
-      fi
-      echo -n "☿ $rev@$branch" $st
-    fi
-  fi
-}
-
 
 ## Main prompt
 build_prompt() {
@@ -194,19 +158,16 @@ build_prompt() {
   prompt_virtualenv
   prompt_context
   prompt_git
-  prompt_bzr
-  prompt_hg
   prompt_end
 }
+
 
 # allows dynamic evaluation of variables and command substitutions within the prompt
 setopt PROMPT_SUBST
 
 # PROMPT='%B%{$fg[green]%}%n %{$fg[blue]%}%~%{$fg[yellow]%}$(git_prompt)%{$reset_color%} %(?.$.%{$fg[red]%}$)%b '
 PROMPT='%{$reset_color%}%{%f%b%k%}$(build_prompt) '
-
 # -------------------------------------------------
-
 
 
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
