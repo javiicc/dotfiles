@@ -1,4 +1,6 @@
-# echo 'Load .zshrc'
+# Loaded only for interactive shell sessions. It is loaded whenever 
+# you open a new terminal window or launch a subshell from a terminal 
+# window.
 
 # -------------------------------------------------
 # ------------------- VARIABLES -------------------
@@ -6,13 +8,17 @@
 # If ZSH is not defined, use the current script's directory.
 [[ -z "$ZSH" ]] && export ZSH="${${(%):-%x}:a:h}"
 
-# If you come from bash you might have to change your $PATH.
-export PATH=$HOME/bin:/usr/local/bin:$PATH
-export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$HOME/.local/lib/python3.10/site-packages:usr/bin/python:$PATH"
 
+# history settings
+export HISTFILE="${XDG_CONFIG_HOME}/zsh/.zsh_history"
+export HISTTIMEFORMAT="%Y/%m/%d %H:%M:%S:   "
+export HISTSIZE=50000        # History lines stored in mememory.
+export SAVEHIST=50000        # History lines stored on disk.
+setopt INC_APPEND_HISTORY    # Immediately append commands to history file.
+setopt HIST_IGNORE_ALL_DUPS  # Never add duplicate entries.
+setopt HIST_IGNORE_SPACE     # Ignore commands that start with a space.
+setopt HIST_REDUCE_BLANKS    # Remove unnecessary blank lines.
 # zsh-autosuggestions
-SAVEHIST=5000
-HISTFILE=~/.zsh_history
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=238"
 
 
