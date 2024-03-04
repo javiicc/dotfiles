@@ -22,7 +22,7 @@ else
     chsh -s '/home/linuxbrew/.linuxbrew/bin/zsh'
 fi
 
-if sh --vresion | grep -q zsh; then
+if sh --version | grep -q zsh; then
     echo '/usr/bin/sh already linked to /home/linuxbrew/.linuxbrew/bin/zsh'
 else
     echo "Enter superuser (sudo) password to symlink sh to zsh"

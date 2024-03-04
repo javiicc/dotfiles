@@ -16,7 +16,6 @@ HISTFILE=~/.zsh_history
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=238"
 
 
-
 # -------------------------------------------------
 # ---------------- HANDY FUNCTIONS ----------------
 # -------------------------------------------------
@@ -28,11 +27,9 @@ function mkcd() {
 # -------------------------------------------------
 # -------------------- ALIASES --------------------
 # -------------------------------------------------
-alias bbd='brew bundle dump --force --describe'
-alias eza='eza -lahF --git'
-alias ls='eza -lahF --git'
-alias man=batman
-alias trail='<<<${(F)path}'
+# Load aliases if they exist
+[ -f "${XDG_CONFIG_HOME}/zsh/.aliases" ] && . "${XDG_CONFIG_HOME}/zsh/.aliases"
+[ -f "${XDG_CONFIG_HOME}/zsh/.aliases.local" ] && . "${XDG_CONFIG_HOME}/zsh/.aliases.local"
 
 
 # -------------------------------------------------
@@ -54,7 +51,6 @@ if [[ -n "$ZSH_THEME" ]]; then
     echo "theme '$ZSH_THEME' not found"
   fi
 fi
-
 
 
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
