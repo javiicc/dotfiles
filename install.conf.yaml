@@ -14,6 +14,9 @@
     ~/.config/bat:
       create: true
       path: config/bat
+    ~/.config/gnome_terminal_settings_backup.txt:
+      create: true
+      path: config/gnome_terminal_settings_backup.txt
 
 - create:
     - ~/work

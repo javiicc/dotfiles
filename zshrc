@@ -10,7 +10,7 @@
 
 
 # history settings
-export HISTFILE="${XDG_CONFIG_HOME}/zsh/.zsh_history"
+export HISTFILE=~/.zsh_history
 export HISTTIMEFORMAT="%Y/%m/%d %H:%M:%S:   "
 export HISTSIZE=50000        # History lines stored in mememory.
 export SAVEHIST=50000        # History lines stored on disk.
