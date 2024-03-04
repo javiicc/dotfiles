@@ -45,8 +45,8 @@ is_theme() {
 ZSH_THEME="javiicc-agnoster"
 
 if [[ -n "$ZSH_THEME" ]]; then
-  if is_theme "$ZSH/.config/zsh/themes" "$ZSH_THEME"; then
-    source "$ZSH/.config/zsh/themes/$ZSH_THEME.zsh-theme"
+  if is_theme "$XDG_CONFIG_HOME/zsh/themes" "$ZSH_THEME"; then
+    source "$XDG_CONFIG_HOME/zsh/themes/$ZSH_THEME.zsh-theme"
   else
     echo "theme '$ZSH_THEME' not found"
   fi
