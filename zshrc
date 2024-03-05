@@ -59,6 +59,11 @@ if [[ -n "$ZSH_THEME" ]]; then
   fi
 fi
 
+# I want to move this to zprofile but it does not work yet
+export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$HOME/.local/lib/python3.10/site-packages:usr/bin/python:$PATH"
+export PATH=$PATH:/usr/bin/obsidian
+
 
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 # enable zsh-autosuggestions by sourcing the zsh-autosuggestions.zsh script

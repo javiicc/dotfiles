@@ -8,6 +8,7 @@
     ~/.gitconfig:
     ~/.zshenv:
     ~/.zshrc:
+    ~/.zprofile:
     ~/.config/zsh:
       create: true
       path: config/zsh
