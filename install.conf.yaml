@@ -20,7 +20,10 @@
       path: config/gnome_terminal_settings_backup.txt
 
 - create:
+    - ~/obsidian
     - ~/work
+    - ~/side-projects
+    - ~/freelancing
 
 - shell:
     - command: ./setup.zsh
