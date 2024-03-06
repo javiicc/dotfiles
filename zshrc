@@ -60,9 +60,9 @@ if [[ -n "$ZSH_THEME" ]]; then
 fi
 
 # I want to move this to zprofile but it does not work yet
-export PATH=$HOME/bin:/usr/local/bin:$PATH
-export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$HOME/.local/lib/python3.10/site-packages:usr/bin/python:$PATH"
-export PATH=$PATH:/usr/bin/obsidian
+export PATH=$PATH:$HOME/bin:/usr/local/bin
+export PATH=$PATH:$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin
+export PATH=$PATH:$HOME/.local/lib/python3.10/site-packages:usr/bin/python
 
 
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
