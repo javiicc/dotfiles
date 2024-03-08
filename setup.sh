@@ -1,4 +1,39 @@
-#!/usr/bin/zsh
+#!/bin/sh
+
+
+echo "\n<<< Starting Setup >>>\n"
+
+
+sudo apt update && sudo apt upgrade -y
+
+sudo apt install libfuse2
+
+sudo apt install curl
+
+sudo apt-get install fonts-powerline
+
+
+echo "\n<<< Starting Homebrew Setup >>>\n"
+
+# install brew if not exists
+if exists brew; then
+    echo "brew exists, skipping install"
+else
+    echo "brew does not exist, continuing with install"
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+fi
+
+# add linuxbrew to path so brew bundle can be executed
+PATH_LINUXBREW='/home/linuxbrew/.linuxbrew/bin'
+if [[ "$PATH" != *"$PATH_LINUXBREW"* ]]; then
+    (echo; echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"') >> /home/javiicctest/.bashrc
+    eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+fi
+
+# install and upgrade (by default) all dependencies from the Brewfile
+brew bundle --verbose
+
+
 
 echo "\n<<< Starting ZSH Setup >>>\n"
 
@@ -19,7 +54,7 @@ if [ "$SHELL" = '/usr/local/bin/zsh' ]; then
     echo '$SHELL is already /home/linuxbrew/.linuxbrew/bin/zsh'
 else
     echo "Enter user password to change login shell"
-    chsh -s '/home/linuxbrew/.linuxbrew/bin/zsh'
+    sudo chsh --shell '/home/linuxbrew/.linuxbrew/bin/zsh' "$USER" 
 fi
 
 if sh --version | grep -q zsh; then
@@ -59,3 +94,10 @@ fi
 #   # I'd like for this to work instead.
 #   # sudo ln -sfv /usr/local/bin/zsh /private/var/select/sh
 # fi
+
+
+# load terminal settings
+dconf load /org/gnome/terminal/ < $HOME/.config/gnome_terminal_settings_backup.txt
+
+
+# sudo reboot

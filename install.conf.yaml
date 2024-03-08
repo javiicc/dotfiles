@@ -26,12 +26,6 @@
     - ~/freelancing
 
 - shell:
-    - command: ./setup.zsh
-      stdout: true
-      stderr: true
-    - command: ./setup_homebrew.zsh
-      stdout: true
-      stderr: true
-    - command: ./setup_zsh.zsh
+    - command: ./setup.sh
       stdout: true
       stderr: true
