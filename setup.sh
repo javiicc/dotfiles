@@ -62,6 +62,7 @@ if sh --version | grep -q zsh; then
 else
     echo "Enter superuser (sudo) password to symlink sh to zsh"
     sudo ln -sfv /home/linuxbrew/.linuxbrew/bin/zsh /usr/bin/sh
+    # sudo ln -sfv /home/linuxbrew/.linuxbrew/bin/zsh /bin/sh
 fi
 
 
