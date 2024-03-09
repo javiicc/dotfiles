@@ -10,7 +10,7 @@ sudo apt install libfuse2
 
 sudo apt install curl
 
-sudo apt-get install fonts-powerline
+sudo apt install fonts-powerline
 
 
 echo "\n<<< Starting Homebrew Setup >>>\n"
@@ -97,7 +97,7 @@ fi
 
 
 # load terminal settings
-dconf load /org/gnome/terminal/ < $HOME/.config/gnome_terminal_settings_backup.txt
+# dconf load /org/gnome/terminal/ < $HOME/.config/gnome_terminal_settings_backup.txt
 
 
 # sudo reboot
