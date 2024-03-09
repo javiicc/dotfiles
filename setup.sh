@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 
 echo "\n<<< Starting Setup >>>\n"
@@ -26,7 +26,7 @@ fi
 # add linuxbrew to path so brew bundle can be executed
 PATH_LINUXBREW='/home/linuxbrew/.linuxbrew/bin'
 if [[ "$PATH" != *"$PATH_LINUXBREW"* ]]; then
-    (echo; echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"') >> /home/javiicctest/.bashrc
+    (echo; echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"') >> $HOME/.bashrc
     eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 fi
 
