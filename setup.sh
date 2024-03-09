@@ -12,11 +12,13 @@ sudo apt install curl
 
 sudo apt install fonts-powerline
 
+sudo apt install code
+
 
 echo "\n<<< Starting Homebrew Setup >>>\n"
 
 # install brew if not exists
-if exists brew; then
+if which brew >/dev/null; then
     echo "brew exists, skipping install"
 else
     echo "brew does not exist, continuing with install"
@@ -50,19 +52,18 @@ else
     echo '/home/linuxbrew/.linuxbrew/bin/zsh' | sudo tee -a '/etc/shells' >/dev/null
 fi
 
-if [ "$SHELL" = '/usr/local/bin/zsh' ]; then
+if [ "$SHELL" = '/home/linuxbrew/.linuxbrew/bin/zsh' ]; then
     echo '$SHELL is already /home/linuxbrew/.linuxbrew/bin/zsh'
 else
     echo "Enter user password to change login shell"
-    sudo chsh --shell '/home/linuxbrew/.linuxbrew/bin/zsh' "$USER" 
+    sudo chsh -s '/home/linuxbrew/.linuxbrew/bin/zsh'
 fi
 
-if sh --version | grep -q zsh; then
+if echo $SHELL | grep -q zsh; then
     echo '/usr/bin/sh already linked to /home/linuxbrew/.linuxbrew/bin/zsh'
 else
     echo "Enter superuser (sudo) password to symlink sh to zsh"
     sudo ln -sfv /home/linuxbrew/.linuxbrew/bin/zsh /usr/bin/sh
-    # sudo ln -sfv /home/linuxbrew/.linuxbrew/bin/zsh /bin/sh
 fi
 
 
