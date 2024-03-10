@@ -21,9 +21,9 @@
 
 - create:
     - ~/obsidian
-    - ~/work
-    - ~/side-projects
-    - ~/freelancing
+    - ~/work/ghenova-digital
+    - ~/work/side-projects
+    - ~/work/freelancing
 
 - shell:
     - command: ./setup.sh
