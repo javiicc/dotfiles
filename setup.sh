@@ -23,6 +23,11 @@ sudo apt install apt-transport-https
 
 sudo apt install code
 
+# recommendations for a sane build environment with pyenv
+sudo apt install -y build-essential libssl-dev zlib1g-dev ibbz2-dev libreadline-dev 
+sudo apt install -y libsqlite3-dev libncursesw5-dev xz-utils tk-dev libxml2-dev 
+sudo apt install -y libxmlsec1-dev libffi-dev liblzma-dev
+
 
 echo "\n<<< Starting Homebrew Setup >>>\n"
 

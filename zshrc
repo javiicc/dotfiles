@@ -23,6 +23,7 @@ setopt HIST_REDUCE_BLANKS    # Remove unnecessary blank lines.
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=238"
 ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
 
+
 # -------------------------------------------------
 # ---------------- HANDY FUNCTIONS ----------------
 # -------------------------------------------------
@@ -70,3 +71,12 @@ eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 # enable zsh-syntax-highlighting by sourcing the zsh-syntax-highlighting.zsh script
 source $HOMEBREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+# pyenv
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
+# eval "$(pyenv virtualenv-init -)"export PYENV_ROOT="$HOME/.pyenv"
+
+# solve issue https://github.com/pyenv/pyenv/issues/2823 on Linux
+brew unlink pkg-config
