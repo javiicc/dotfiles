@@ -78,5 +78,3 @@ export PYENV_ROOT="$HOME/.pyenv"
 eval "$(pyenv init -)"
 # eval "$(pyenv virtualenv-init -)"export PYENV_ROOT="$HOME/.pyenv"
 
-# solve issue https://github.com/pyenv/pyenv/issues/2823 on Linux
-brew unlink pkg-config

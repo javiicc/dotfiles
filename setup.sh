@@ -49,6 +49,9 @@ fi
 # install and upgrade (by default) all dependencies from the Brewfile
 brew bundle --verbose
 
+# solve issue https://github.com/pyenv/pyenv/issues/2823 on Linux
+brew unlink pkg-config
+
 
 
 echo "\n<<< Starting ZSH Setup >>>\n"
