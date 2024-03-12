@@ -4,7 +4,8 @@
 echo "\n<<< Starting Setup >>>\n"
 
 
-sudo apt update && sudo apt upgrade -y
+sudo apt update 
+sudo apt upgrade -y
 
 sudo apt install libfuse2
 
@@ -24,63 +25,64 @@ sudo apt install apt-transport-https
 sudo apt install code
 
 # recommendations for a sane build environment with pyenv
-sudo apt install -y build-essential libssl-dev zlib1g-dev ibbz2-dev libreadline-dev 
-sudo apt install -y libsqlite3-dev libncursesw5-dev xz-utils tk-dev libxml2-dev 
-sudo apt install -y libxmlsec1-dev libffi-dev liblzma-dev
+# sudo apt install -y build-essential libssl-dev zlib1g-dev ibbz2-dev libreadline-dev 
+# sudo apt install -y libsqlite3-dev libncursesw5-dev xz-utils tk-dev libxml2-dev 
+# sudo apt install -y libxmlsec1-dev libffi-dev liblzma-dev
 
 
 echo "\n<<< Starting Homebrew Setup >>>\n"
 
 # install brew if not exists
 if which brew >/dev/null; then
-    echo "brew exists, skipping install"
+   echo "brew exists, skipping install"
 else
-    echo "brew does not exist, continuing with install"
-    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+   echo "brew does not exist, continuing with install"
+   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 fi
 
 # add linuxbrew to path so brew bundle can be executed
 PATH_LINUXBREW='/home/linuxbrew/.linuxbrew/bin'
 if [[ "$PATH" != *"$PATH_LINUXBREW"* ]]; then
-    (echo; echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"') >> $HOME/.bashrc
-    eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+   (echo; echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"') >> $HOME/.bashrc
+   eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 fi
 
 # install and upgrade (by default) all dependencies from the Brewfile
 brew bundle --verbose
 
 # solve issue https://github.com/pyenv/pyenv/issues/2823 on Linux
-brew unlink pkg-config
+# if which /home/linuxbrew/.linuxbrew/Cellar/pkg-config; then
+#     brew unlink pkg-config
+# else
+#     echo "/home/linuxbrew/.linuxbrew/Cellar/pkg-config does not exists"
+# fi
 
 
-
-echo "\n<<< Starting ZSH Setup >>>\n"
-
+#echo "\n<<< Starting ZSH Setup >>>\n"
 
 # Installation unnecessary; it's in the Brewfile
-
 
 # linux
 # https://stackoverflow.com/a/4749368/1341838
 if grep -Fxq '/home/linuxbrew/.linuxbrew/bin/zsh' '/etc/shells'; then
-    echo '/home/linuxbrew/.linuxbrew/bin/zsh already exists in /etc/shells'
+   echo '/home/linuxbrew/.linuxbrew/bin/zsh already exists in /etc/shells'
 else
     # echo "Enter superuser (sudo) password to edit /etc/shells"
-    echo '/home/linuxbrew/.linuxbrew/bin/zsh' | sudo tee -a '/etc/shells' >/dev/null
+   echo '/home/linuxbrew/.linuxbrew/bin/zsh' | sudo tee -a '/etc/shells' >/dev/null
 fi
 
 if [ "$SHELL" = '/home/linuxbrew/.linuxbrew/bin/zsh' ]; then
-    echo '$SHELL is already /home/linuxbrew/.linuxbrew/bin/zsh'
+   echo '$SHELL is already /home/linuxbrew/.linuxbrew/bin/zsh'
 else
-    echo "Enter user password to change login shell"
-    sudo chsh -s '/home/linuxbrew/.linuxbrew/bin/zsh'
+   echo "Enter user password to change login shell"
+   sudo chsh -s '/home/linuxbrew/.linuxbrew/bin/zsh'
 fi
 
 if echo $SHELL | grep -q zsh; then
-    echo '/usr/bin/sh already linked to /home/linuxbrew/.linuxbrew/bin/zsh'
+   echo '/usr/bin/sh already linked to /home/linuxbrew/.linuxbrew/bin/zsh'
 else
-    echo "Enter superuser (sudo) password to symlink sh to zsh"
-    sudo ln -sfv /home/linuxbrew/.linuxbrew/bin/zsh /usr/bin/sh
+   echo "Enter superuser (sudo) password to symlink sh to zsh"
+   sudo ln -sfv /home/linuxbrew/.linuxbrew/bin/zsh /usr/bin/sh
 fi
 
 
@@ -116,7 +118,7 @@ fi
 
 
 # load terminal settings
-# dconf load /org/gnome/terminal/ < $HOME/.config/gnome_terminal_settings_backup.txt
+dconf load /org/gnome/terminal/ < $HOME/.config/gnome_terminal_settings_backup.txt
 
 
 # sudo reboot
