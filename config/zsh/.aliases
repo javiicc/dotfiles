@@ -1,3 +1,4 @@
+alias cdpara='cd ~/work/ghenova-digital/paravasis'
 alias bbd='brew bundle dump --force --describe'
 alias eza='eza -lahF --git'
 alias ls='eza -lahF --git'
