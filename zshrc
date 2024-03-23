@@ -79,3 +79,14 @@ eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
 
 
+
+# Created by `pipx` on 2024-03-22 20:38:45
+export PATH="$PATH:/home/javiicc/.local/bin"
+#eval "$(register-python-argcomplete pipx)"
+
+# Enable tab completion poetry
+fpath+=~/.zfunc
+autoload -Uz compinit && compinit
+
+# fnn: Fast Node Manager
+eval "$(fnm env --use-on-cd)"

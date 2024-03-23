@@ -1,3 +1,4 @@
+alias cdft='cd ~/work/side-projects/full-stack-fastapi-template'
 alias cdpara='cd ~/work/ghenova-digital/paravasis'
 alias bbd='brew bundle dump --force --describe'
 alias eza='eza -lahF --git'
