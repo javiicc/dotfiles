@@ -1,6 +1,7 @@
-alias cdft='cd ~/work/side-projects/full-stack-fastapi-template'
 alias cdana='cd ~/work/ghenova-digital/anava/anava-coltabaco-backend'
+alias cdft='cd ~/work/side-projects/full-stack-fastapi-template'
 alias cdpara='cd ~/work/ghenova-digital/paravasis'
+alias cdsot='cd ~/work/side-projects/svelte-learning/svelte-official-tutorial ; code . ; exit'
 alias bbd='brew bundle dump --force --describe'
 alias eza='eza -lahF --git'
 alias ls='eza -lahF --git'
