@@ -1,17 +1,17 @@
-#!/bin/bash
+#!/bin/zsh
 
 
 echo "\n<<< Starting Setup >>>\n"
 
 
-sudo apt update 
-sudo apt upgrade -y
+# sudo apt update 
+# sudo apt upgrade -y
 
-sudo apt install libfuse2
+# sudo apt install libfuse2
 
-sudo apt install curl
+# sudo apt install curl
 
-sudo apt install fonts-powerline
+# sudo apt install fonts-powerline
 
 # install vscode - https://code.visualstudio.com/docs/setup/linux
 #sudo apt install wget gpg
@@ -37,14 +37,21 @@ if which brew >/dev/null; then
    echo "brew exists, skipping install"
 else
    echo "brew does not exist, continuing with install"
-   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+   /bin/zsh -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 fi
 
-# add linuxbrew to path so brew bundle can be executed
-PATH_LINUXBREW='/home/linuxbrew/.linuxbrew/bin'
-if [[ "$PATH" != *"$PATH_LINUXBREW"* ]]; then
-   (echo; echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"') >> $HOME/.bashrc
-   eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+# # add linuxbrew to path so brew bundle can be executed
+# PATH_LINUXBREW='/home/linuxbrew/.linuxbrew/bin'
+# if [[ "$PATH" != *"$PATH_LINUXBREW"* ]]; then
+#    (echo; echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"') >> $HOME/.bashrc
+#    eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+# fi
+
+# add brew to path so brew bundle can be executed
+PATH_BREW='/opt/homebrew/bin'
+if [[ "$PATH" != *"$PATH_BREW"* ]]; then
+   (echo; echo 'eval "$(/opt/homebrew/bin/brew shellenv)"') >> $HOME/.zshrc
+   eval "$(/opt/homebrew/bin/brew shellenv)"
 fi
 
 # install and upgrade (by default) all dependencies from the Brewfile
@@ -64,26 +71,26 @@ brew bundle --verbose
 
 # linux
 # https://stackoverflow.com/a/4749368/1341838
-if grep -Fxq '/home/linuxbrew/.linuxbrew/bin/zsh' '/etc/shells'; then
-   echo '/home/linuxbrew/.linuxbrew/bin/zsh already exists in /etc/shells'
-else
-    # echo "Enter superuser (sudo) password to edit /etc/shells"
-   echo '/home/linuxbrew/.linuxbrew/bin/zsh' | sudo tee -a '/etc/shells' >/dev/null
-fi
+# if grep -Fxq '/home/linuxbrew/.linuxbrew/bin/zsh' '/etc/shells'; then
+#    echo '/home/linuxbrew/.linuxbrew/bin/zsh already exists in /etc/shells'
+# else
+#     # echo "Enter superuser (sudo) password to edit /etc/shells"
+#    echo '/home/linuxbrew/.linuxbrew/bin/zsh' | sudo tee -a '/etc/shells' >/dev/null
+# fi
 
-if [ "$SHELL" = '/home/linuxbrew/.linuxbrew/bin/zsh' ]; then
-   echo '$SHELL is already /home/linuxbrew/.linuxbrew/bin/zsh'
-else
-   echo "Enter user password to change login shell"
-   sudo chsh -s '/home/linuxbrew/.linuxbrew/bin/zsh'
-fi
+# if [ "$SHELL" = '/home/linuxbrew/.linuxbrew/bin/zsh' ]; then
+#    echo '$SHELL is already /home/linuxbrew/.linuxbrew/bin/zsh'
+# else
+#    echo "Enter user password to change login shell"
+#    sudo chsh -s '/home/linuxbrew/.linuxbrew/bin/zsh'
+# fi
 
-if echo $SHELL | grep -q zsh; then
-   echo '/usr/bin/sh already linked to /home/linuxbrew/.linuxbrew/bin/zsh'
-else
-   echo "Enter superuser (sudo) password to symlink sh to zsh"
-   sudo ln -sfv /home/linuxbrew/.linuxbrew/bin/zsh /usr/bin/sh
-fi
+# if echo $SHELL | grep -q zsh; then
+#    echo '/usr/bin/sh already linked to /home/linuxbrew/.linuxbrew/bin/zsh'
+# else
+#    echo "Enter superuser (sudo) password to symlink sh to zsh"
+#    sudo ln -sfv /home/linuxbrew/.linuxbrew/bin/zsh /usr/bin/sh
+# fi
 
 
 # # macOS

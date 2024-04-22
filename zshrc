@@ -60,13 +60,13 @@ if [[ -n "$ZSH_THEME" ]]; then
   fi
 fi
 
-# I want to move this to zprofile but it does not work yet
-export PATH=$PATH:$HOME/bin:/usr/local/bin
-export PATH=$PATH:$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin
-export PATH=$PATH:$HOME/.local/lib/python3.10/site-packages:usr/bin/python
+# # I want to move this to zprofile but it does not work yet
+# export PATH=$PATH:$HOME/bin:/usr/local/bin
+# export PATH=$PATH:$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin
+# export PATH=$PATH:$HOME/.local/lib/python3.10/site-packages:usr/bin/python
 
 
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+eval "$(/opt/homebrew/bin/brew shellenv)"
 # enable zsh-autosuggestions by sourcing the zsh-autosuggestions.zsh script
 source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 # enable zsh-syntax-highlighting by sourcing the zsh-syntax-highlighting.zsh script
@@ -80,13 +80,15 @@ eval "$(pyenv virtualenv-init -)"
 
 
 
-# Created by `pipx` on 2024-03-22 20:38:45
-export PATH="$PATH:/home/javiicc/.local/bin"
-#eval "$(register-python-argcomplete pipx)"
+# # Created by `pipx` on 2024-03-22 20:38:45
+# export PATH="$PATH:/home/javiicc/.local/bin"
+# #eval "$(register-python-argcomplete pipx)"
 
-# Enable tab completion poetry
-fpath+=~/.zfunc
-autoload -Uz compinit && compinit
+# # Enable tab completion poetry
+# fpath+=~/.zfunc
+# autoload -Uz compinit && compinit
 
 # fnn: Fast Node Manager
 eval "$(fnm env --use-on-cd)"
+
+eval "$(/opt/homebrew/bin/brew shellenv)"

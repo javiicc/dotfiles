@@ -9,14 +9,16 @@ brew "eza"
 brew "fnm"
 # Fast, highly customisable system info script
 brew "neofetch"
-# Execute binaries from Python packages in isolated environments
-brew "pipx"
-# UNIX shell (command interpreter)
-brew "zsh"
+# Python version management
+brew "pyenv"
 # Fish-like fast/unobtrusive autosuggestions for zsh
 brew "zsh-autosuggestions"
 # Fish shell like syntax highlighting for zsh
 brew "zsh-syntax-highlighting"
+# Web browser
+cask "google-chrome"
+# Open-source code editor
+cask "visual-studio-code"
 vscode "42crunch.vscode-openapi"
 vscode "bradlc.vscode-tailwindcss"
 vscode "charliermarsh.ruff"
