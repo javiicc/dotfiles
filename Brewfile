@@ -11,12 +11,16 @@ brew "fnm"
 brew "neofetch"
 # Python version management
 brew "pyenv"
+# Pyenv plugin to manage virtualenv
+brew "pyenv-virtualenv"
 # Fish-like fast/unobtrusive autosuggestions for zsh
 brew "zsh-autosuggestions"
 # Fish shell like syntax highlighting for zsh
 brew "zsh-syntax-highlighting"
 # Web browser
 cask "google-chrome"
+# Knowledge base that works on top of a local folder of plain text Markdown files
+cask "obsidian"
 # Open-source code editor
 cask "visual-studio-code"
 vscode "42crunch.vscode-openapi"
