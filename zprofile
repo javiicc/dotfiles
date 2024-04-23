@@ -8,3 +8,4 @@
 # export PATH=$PATH:/usr/bin/obsidian
 # Created by `pipx` on 2024-03-22 20:38:45
 # export PATH="$PATH:/home/javiicc/.local/bin"
+

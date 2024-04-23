@@ -45,20 +45,21 @@ prompt_end() {
 
 prompt_head() {
   echo "\r               "  # Clear prevous line
-  # echo "\r %{%F{32}%}[%64<..<%~%<<]"  # Print Dir.
   echo "\r %{%F{238}%}[%64<..<%~%<<]"  # Print Dir.
 }
 
 # Context: user@hostname (who am I and where am I)
 prompt_context() {
-  # prompt_segment 000 088 "%(!.%{%F{yellow}%}.)%n"
-  prompt_segment 233 088 "%(!.%{%F{yellow}%}.)%n"
+  prompt_segment 233 039 "%(!.%{%F{yellow}%}.)%n"
 }
+# 233 088
+# 052 195
+# 236 189
 
 # Virtualenv: current working virtualenv
 prompt_virtualenv() {
   if [[ -n "$VIRTUAL_ENV" ]]; then
-    prompt_segment 052 195 "(${VIRTUAL_ENV:t:gs/%/%%})"
+    prompt_segment 235 164 "(${VIRTUAL_ENV:t:gs/%/%%})"
   fi
 }
 
@@ -79,7 +80,7 @@ prompt_git() {
     # if [[ -n $dirty ]]; then
     #   prompt_segment yellow black
     # else
-    prompt_segment 236 189
+    prompt_segment 235 189
     # fi
 
     if [[ -e "${repo_path}/BISECT_LOG" ]]; then
