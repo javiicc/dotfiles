@@ -1,4 +1,4 @@
-alias cdj='cd ~/work/javideveloper/javideveloper ; code . ; exit'
+alias cdj='cd ~/work/javideveloper ; code . ; exit'
 alias bbd='brew bundle dump --force --describe'
 alias eza='eza -lahF --git'
 alias ls='eza -lahF --git'
