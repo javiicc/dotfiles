@@ -18,11 +18,10 @@
     ~/.config/gnome_terminal_settings_backup.txt:
       create: true
       path: config/gnome_terminal_settings_backup.txt
+    ~/.hushlogin:
 
 - create:
-    - ~/obsidian
-    - ~/work/side-projects
-    - ~/work/freelancing
+    - ~/work
 
 - shell:
     - command: ./setup.sh
