@@ -19,6 +19,9 @@
       create: true
       path: config/gnome_terminal_settings_backup.txt
     ~/.hushlogin:
+    ~/.config/kitty:
+      create: true
+      path: config/kitty
 
 - create:
     - ~/work

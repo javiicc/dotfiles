@@ -21,6 +21,8 @@ brew "zsh-autosuggestions"
 brew "zsh-syntax-highlighting"
 # Web browser
 cask "google-chrome"
+# GPU-based terminal emulator
+cask "kitty"
 # Knowledge base that works on top of a local folder of plain text Markdown files
 cask "obsidian"
 # Open-source code editor
