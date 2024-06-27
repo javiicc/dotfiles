@@ -22,6 +22,10 @@
     ~/.config/kitty:
       create: true
       path: config/kitty
+    ~/.config/nvim:
+      create: true
+      path: config/nvim
+
 
 - create:
     - ~/work

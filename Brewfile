@@ -5,20 +5,37 @@ brew "bat"
 brew "bat-extras"
 # Modern, maintained replacement for ls
 brew "eza"
+# Simple, fast and user-friendly alternative to find
+brew "fd"
 # Fast and simple Node.js version manager
 brew "fnm"
+# XML-based font configuration API for X Windows
+brew "fontconfig"
+# Simple terminal UI for git commands
+brew "lazygit"
+# Powerful, lightweight programming language
+brew "lua"
+# Package manager for the Lua programming language
+brew "luarocks"
 # Fast, highly customisable system info script
 brew "neofetch"
+# Ambitious Vim-fork focused on extensibility and agility
+brew "neovim"
 # Execute binaries from Python packages in isolated environments
 brew "pipx"
 # Python version management
 brew "pyenv"
 # Pyenv plugin to manage virtualenv
 brew "pyenv-virtualenv"
+# Search tool like grep and The Silver Searcher
+brew "ripgrep"
 # Fish-like fast/unobtrusive autosuggestions for zsh
 brew "zsh-autosuggestions"
 # Fish shell like syntax highlighting for zsh
 brew "zsh-syntax-highlighting"
+cask "font-jetbrains-mono"
+cask "font-jetbrains-mono-nerd-font"
+cask "font-symbols-only-nerd-font"
 # Web browser
 cask "google-chrome"
 # GPU-based terminal emulator
