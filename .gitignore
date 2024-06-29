@@ -1,5 +1,4 @@
 Brewfile.lock.json
-
-venv
-
-.vscode
+lazy-lock.json
+.DS_Store
+lazyvim.json
