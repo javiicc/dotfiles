@@ -1,7 +1,7 @@
-alias cdj='cd ~/work/javideveloper ; code . ; exit'
-alias cdmb='cd ~/work/myfi-back ; code . ; exit'
-alias cdmf='cd ~/work/myfi-front ; code . ; exit'
-alias cddot='cd ~/.dotfiles ; code . ; exit'
+alias cdj='cd ~/work/javideveloper ; nvim'
+alias cdmb='cd ~/work/myfi-back ; nvim'
+alias cdmf='cd ~/work/myfi-front ; nvim'
+alias cddot='cd ~/.dotfiles ; nvim'
 
 alias bbd='brew bundle dump --force --describe'
 
