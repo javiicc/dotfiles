@@ -2,3 +2,12 @@ Brewfile.lock.json
 lazy-lock.json
 .DS_Store
 lazyvim.json
+
+tt.*
+.tests
+doc/tags
+debug
+.repro
+foo.*
+*.log
+data
