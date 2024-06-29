@@ -9,6 +9,8 @@ return {
         pyright = {},
         bashls = {},
         yamlls = {},
+        svelte = {},
+        tailwindcss = {},
       },
     },
   },
